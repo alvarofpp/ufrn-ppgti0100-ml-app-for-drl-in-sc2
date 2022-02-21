@@ -1,0 +1,20 @@
+---
+version: '3.6'
+services:
+  streamlit-mlops-drl:
+    build:
+      context: .
+    image: alvarofpp/streamlit-mlops-drl
+    command: streamlit run app.py
+    container_name: streamlit_mlops_drl
+#    network_mode: host
+    networks:
+      - ppgti
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+
+networks:
+  ppgti:
+    driver: bridge
