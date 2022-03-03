@@ -1,7 +1,5 @@
-from typing import Dict
-
+from app.constants import DIFFICULTY, RACES
 from app.views.components import Component
-from app.constants import RACES, DIFFICULTY
 
 
 class PlayerComponent(Component):
@@ -17,7 +15,7 @@ class PlayerComponent(Component):
         self.data['race'] = self.render_component.selectbox(
             'Raça',
             RACES,
-            key='select_race_p{}'.format(self.player_number)
+            key='select_race_p{}'.format(self.player_number),
         )
 
         if self.data['race'] == 'Player':
@@ -32,5 +30,5 @@ class PlayerComponent(Component):
         self.data['difficulty'] = self.render_component.selectbox(
             'Dificuldade',
             DIFFICULTY,
-            key='select_race_p{}'.format(self.player_number)
+            key='select_race_p{}'.format(self.player_number),
         )

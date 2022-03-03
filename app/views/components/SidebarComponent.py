@@ -1,6 +1,5 @@
-from app.views.components import Component, TrainingQueueComponent
 from app.views import pages
-from app import SessionState
+from app.views.components import Component, TrainingQueueComponent
 
 
 class SidebarComponent(Component):

@@ -1,7 +1,7 @@
 import abc
-import streamlit as st
 
 from app.core.mixins import CheckMethodsMixin
+import streamlit as st
 
 
 class PageView(CheckMethodsMixin, abc.ABC):
@@ -15,7 +15,7 @@ class PageView(CheckMethodsMixin, abc.ABC):
 
     @abc.abstractmethod
     def intro(self):
-        raise NotImplemented('You must implement the "intro" method.')
+        raise NotImplementedError('You must implement the "intro" method.')
 
     def render(self):
         st.title(self.title.upper())

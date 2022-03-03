@@ -1,5 +1,5 @@
-from app.views.components import Component, QueueElementComponent
 from app import SessionState
+from app.views.components import Component  # , QueueElementComponent
 
 
 class TrainingQueueComponent(Component):

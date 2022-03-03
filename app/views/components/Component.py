@@ -1,5 +1,6 @@
 import abc
-from app.core.mixins import RenderMixin, CheckMethodsMixin
+
+from app.core.mixins import CheckMethodsMixin, RenderMixin
 
 
 class Component(RenderMixin, CheckMethodsMixin, abc.ABC):

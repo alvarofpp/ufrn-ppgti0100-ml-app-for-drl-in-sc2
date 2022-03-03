@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
+from datetime import datetime
 from typing import Dict
 import uuid
-from datetime import datetime
 
 
 @dataclass(order=True)

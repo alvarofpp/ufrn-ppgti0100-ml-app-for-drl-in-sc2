@@ -1,5 +1,4 @@
 from .Component import Component
-
 from .MessageFeedbackComponent import MessageFeedbackComponent
 from .PlayerComponent import PlayerComponent
 from .QueueElementComponent import QueueElementComponent

@@ -1,5 +1,6 @@
-import streamlit as st
 from typing import Any
+
+import streamlit as st
 
 
 class SessionState:

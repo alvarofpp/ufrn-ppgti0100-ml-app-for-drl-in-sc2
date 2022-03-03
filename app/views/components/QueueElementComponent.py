@@ -32,6 +32,6 @@ class QueueElementComponent(Component):
         """.format(
             training_element.id,
             training_element.priority,
-            training_element.created_at.strftime("%d/%m/%Y %H:%M:%S")
+            training_element.created_at.strftime('%d/%m/%Y %H:%M:%S'),
         ))
         self.render_component.json(training_element.config)

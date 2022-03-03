@@ -1,8 +1,7 @@
-import streamlit as st
-
 from app import SessionState
-from app.views.pages import PageView
 from app.views.components import QueueElementComponent
+from app.views.pages import PageView
+import streamlit as st
 
 
 class QueuePage(PageView):
@@ -12,14 +11,14 @@ class QueuePage(PageView):
         self.title = 'Fila de treinamentos'
 
     def intro(self):
-        st.markdown('''
+        st.markdown("""
         Nessa página você conseguirá acompanhar os seus treinamentos.
-        ''', unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
 
     def section_01(self):
-        st.markdown('''
+        st.markdown("""
         ## Fila
-        ''', unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
         queue = SessionState.get('queue')
         len_queue = len(queue)
 
@@ -29,7 +28,7 @@ class QueuePage(PageView):
 
         st.text('Há um total de {} treinamento{} na fila.'.format(
             len_queue,
-            's' if len_queue > 1 else ''
+            's' if len_queue > 1 else '',
         ))
 
         for element in queue:

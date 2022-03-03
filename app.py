@@ -1,6 +1,6 @@
-import streamlit as st
-from app.views.components import SidebarComponent, MessageFeedbackComponent
 from app.config import get_config
+from app.views.components import MessageFeedbackComponent, SidebarComponent
+import streamlit as st
 
 
 def main():

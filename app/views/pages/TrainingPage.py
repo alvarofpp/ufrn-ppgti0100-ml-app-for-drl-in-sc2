@@ -1,9 +1,9 @@
-import streamlit as st
-from app.views.pages import PageView
-from app.views.components import PlayerComponent, SelectComponent
+from app import SessionState
 from app.constants import LADDER_MAPS, PRIORITY
 from app.core.queue import TrainingElement, TrainingQueue
-from app import SessionState
+from app.views.components import PlayerComponent, SelectComponent
+from app.views.pages import PageView
+import streamlit as st
 
 
 class TrainingPage(PageView):
@@ -14,18 +14,18 @@ class TrainingPage(PageView):
         self.data = {
             'map': None,
             'number_players': 2,
-            'players': []
+            'players': [],
         }
 
     def intro(self):
-        st.markdown('''
+        st.markdown("""
         Aqui é onde você parametriza seus treinamentos e acompanha o seu desenvolvimento.
-        ''', unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
 
     def section_01(self):
-        st.markdown('''
+        st.markdown("""
         ## Dados básicos
-        ''', unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
 
         self.data['priority'] = SelectComponent(
             render_component=st,
@@ -47,14 +47,14 @@ class TrainingPage(PageView):
             step=50,
         )
 
-        st.markdown('''
+        st.markdown("""
         ## Mapa
-        ''', unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
         self.data['map'] = st.selectbox('Mapa', LADDER_MAPS)
 
-        st.markdown('''
+        st.markdown("""
         ## Players
-        ''', unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
         self.data['number_players'] = st.slider('Quantidade de players', min_value=2, max_value=8)
         column_one, column_two = st.columns(2)
 
