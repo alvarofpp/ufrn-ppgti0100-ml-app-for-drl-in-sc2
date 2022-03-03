@@ -1,6 +1,4 @@
-FROM python:3.9
-
-# Install dependencies
+FROM python:3.9.10
 
 # Install requirements
 RUN pip3 install --upgrade pip
