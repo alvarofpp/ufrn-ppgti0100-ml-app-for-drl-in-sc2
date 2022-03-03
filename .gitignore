@@ -2,10 +2,9 @@
 venv/*
 dist/*
 build/*
-*/__pycache__/*
-*/*/__pycache__/*
 site/*
 # Egg metadata
 *.egg-info
 .coverage
 .env
+__pycache__
