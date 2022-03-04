@@ -1,5 +1,5 @@
 from app import SessionState
-from app.constants import LADDER_MAPS, PRIORITY
+from app.constants import LADDER_MAPS, PRIORITIES
 from app.core.queue import TrainingElement, TrainingQueue
 from app.views.components import PlayerComponent, SelectComponent
 from app.views.pages import PageView
@@ -29,7 +29,7 @@ class TrainingPage(PageView):
 
         self.data['priority'] = SelectComponent(
             render_component=st,
-            values=PRIORITY,
+            values=PRIORITIES,
         ).render('Prioridade')
         self.data['name'] = st.text_input(
             'Nome',

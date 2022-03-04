@@ -10,5 +10,6 @@ class TrainingQueueComponent(Component):
             self.render_component.text('Nenhum treinamento em andamento.')
             return
 
-        # for queue_element in queue:
-        #     QueueElementComponent(render_component=self.render_component).render(queue_element)
+        for queue_element in queue:
+            self.render_component.code(queue_element)
+            # QueueElementComponent(render_component=self.render_component).render(queue_element)

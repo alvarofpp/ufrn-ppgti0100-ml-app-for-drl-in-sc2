@@ -1,4 +1,5 @@
 LADDER_MAPS = [
+    'AbyssalReef',
     '16-Bit LE',
     'Abiogenesis LE',
     'Abyssal Reef LE',
@@ -49,28 +50,7 @@ LADDER_MAPS = [
     'Year Zero LE',
 ]
 
-RACES = [
-    'Random',
-    'Protoss',
-    'Human',
-    'Zerg',
-    'Player',
-]
-
-DIFFICULTY = [
-    'VeryEasy',
-    'Easy',
-    'Medium',
-    'MediumHard',
-    'Hard',
-    'Harder',
-    'VeryHard',
-    'CheatVision',
-    'CheatMoney',
-    'CheatInsane',
-]
-
-PRIORITY = {
+PRIORITIES = {
     1: 'Normal',
     0: 'Sem prioridade',
     2: 'Prioritário',

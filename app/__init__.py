@@ -1,10 +1,8 @@
-from .constants import DIFFICULTY, LADDER_MAPS, PRIORITY, RACES
+from .constants import LADDER_MAPS, PRIORITIES
 from .SessionState import SessionState
 
 __all__ = [
-    'DIFFICULTY',
     'LADDER_MAPS',
-    'PRIORITY',
-    'RACES',
+    'PRIORITIES',
     'SessionState',
 ]

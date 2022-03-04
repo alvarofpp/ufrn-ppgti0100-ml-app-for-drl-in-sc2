@@ -1,4 +1,4 @@
-from app.constants import DIFFICULTY, RACES
+from app.enums import Difficulties, Races
 from app.views.components import Component
 
 
@@ -12,13 +12,17 @@ class PlayerComponent(Component):
 
     def render(self):
         self.render_component.markdown('**Player {}**'.format(self.player_number + 1))
+        self.data['is_agent'] = self.render_component.checkbox(
+            'Agente',
+            key='checkbox_agent_p{}'.format(self.player_number),
+        )
         self.data['race'] = self.render_component.selectbox(
             'Raça',
-            RACES,
+            Races.list(),
             key='select_race_p{}'.format(self.player_number),
         )
 
-        if self.data['race'] == 'Player':
+        if self.data['is_agent']:
             return self._render_player()
 
         return self._render_bot()
@@ -29,6 +33,6 @@ class PlayerComponent(Component):
     def _render_bot(self):
         self.data['difficulty'] = self.render_component.selectbox(
             'Dificuldade',
-            DIFFICULTY,
-            key='select_race_p{}'.format(self.player_number),
+            Difficulties.list(),
+            key='select_difficulty_p{}'.format(self.player_number),
         )
