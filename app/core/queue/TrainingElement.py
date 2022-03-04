@@ -13,6 +13,7 @@ class TrainingElement:
     description: str = field(compare=False)
     created_at: datetime = field(compare=False)
     config: Dict = field(compare=False)
+    max_matches: int = field(compare=False)
     matches_runned: int = field(compare=False)
 
     @staticmethod
@@ -28,6 +29,7 @@ class TrainingElement:
                 'map': training_data['map'],
                 'max_matches': training_data['max_matches'],
             },
+            max_matches=training_data['max_matches'],
             matches_runned=0,
         )
 

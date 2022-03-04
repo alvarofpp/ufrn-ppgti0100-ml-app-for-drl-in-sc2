@@ -8,6 +8,8 @@ class SessionState:
         'queue': [],
         'message_feedback': None,
         'training_create_data': None,
+        'training_in_progress': False,
+        'training_in_progress_data': None,
     }
 
     @staticmethod

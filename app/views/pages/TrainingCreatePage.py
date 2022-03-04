@@ -112,6 +112,7 @@ class TrainingCreatePage(PageView):
             self.data['number_players'] = 1
 
         column_one, column_two = st.columns(2)
+        self.data['players'] = []
 
         for player_number in range(0, self.data['number_players']):
             player_data = None
@@ -125,8 +126,7 @@ class TrainingCreatePage(PageView):
                 player_data=player_data,
             )
             player_component.render()
-            if player_data is None:
-                self.data['players'].append(player_component.data)
+            self.data['players'].append(player_component.data)
 
         if st.button('Adicionar treinamento a base'):
             if not self._check_least_one_agent():

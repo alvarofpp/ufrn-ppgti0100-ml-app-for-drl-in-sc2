@@ -12,7 +12,6 @@ class PlayerComponent(Component):
         self.data = {
             'is_agent': False,
             'race': None,
-            'difficulty': None,
         }
 
         if player_data is not None:
@@ -51,7 +50,8 @@ class PlayerComponent(Component):
 
     def _render_player(self):
         agent_index = 0
-        if self.data['agent'] is not None:
+
+        if 'agent' in self.data.keys() and self.data['agent'] is not None:
             agent_index = AGENTS.index(self.data['agent'])
 
         self.data['agent'] = self.render_component.selectbox(
@@ -60,11 +60,11 @@ class PlayerComponent(Component):
             key='select_agent_p{}'.format(self.player_number),
             index=agent_index,
         )
-        pass
 
     def _render_bot(self):
         difficulty_index = 0
-        if self.data['difficulty'] is not None:
+
+        if 'difficulty' in self.data.keys() and self.data['difficulty'] is not None:
             difficulty_index = Difficulties.list().index(self.data['difficulty'])
 
         self.data['difficulty'] = self.render_component.selectbox(

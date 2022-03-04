@@ -18,6 +18,14 @@ class TrainingIndexPage(PageView):
         """, unsafe_allow_html=True)
 
     def section_01(self):
+        if SessionState.get('training_in_progress'):
+            st.markdown("""
+            # Treinamento em progresso
+            """)
+            training_element = SessionState.get('training_in_progress_data')
+            percent = 100 * training_element.max_matches / training_element.matches_runned
+            st.progress(percent)
+
         st.markdown("""
         ## Base de treinamentos
         """, unsafe_allow_html=True)
