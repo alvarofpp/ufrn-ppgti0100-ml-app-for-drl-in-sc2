@@ -32,4 +32,4 @@ class TrainingIndexPage(PageView):
         ))
 
         for element in queue:
-            TrainingElementComponent().render(element)
+            TrainingElementComponent.TrainingElementComponent().render(element)

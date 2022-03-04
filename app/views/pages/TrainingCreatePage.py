@@ -70,11 +70,18 @@ class TrainingCreatePage(PageView):
         st.markdown("""
         ## Players
         """, unsafe_allow_html=True)
-        self.data['number_players'] = st.slider(
-            'Quantidade de players',
-            min_value=1,
-            max_value=self.maps[self.data['map']].players,
-        )
+
+        max_players = self.maps[self.data['map']].players
+
+        if max_players > 1:
+            self.data['number_players'] = st.slider(
+                'Quantidade de players',
+                min_value=1,
+                max_value=max_players,
+            )
+        else:
+            self.data['number_players'] = 1
+
         column_one, column_two = st.columns(2)
 
         for player_number in range(0, self.data['number_players']):
