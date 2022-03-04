@@ -39,10 +39,17 @@ class QueueElementComponent(Component):
         - **ID**: {}
         - **Prioridade**: {}
         - **Data e hora de criação**: {}
-        **Configurações**:
         """.format(
             training_element.id,
             training_element.priority,
             training_element.created_at.strftime('%d/%m/%Y %H:%M:%S'),
         ))
-        self.render_component.json(training_element.config)
+
+        with self.render_component.expander('Configurações'):
+            self.render_component.download_button(
+                'Download configurações',
+                TrainingElement.to_dict(training_element),
+                file_name='{}.json'.format(training_element.id),
+                key='btn_download_{}'.format(training_element.id),
+            )
+            self.render_component.json(training_element.config)

@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Dict
 import uuid
+import json
 
 
 @dataclass(order=True)
@@ -19,7 +20,7 @@ class TrainingElement:
         return TrainingElement(
             priority=training_data['priority'],
             id=uuid.uuid4(),
-            name=training_data['name'] if training_data['name'] else uuid.uuid4(),
+            name=training_data['name'] if training_data['name'] else str(uuid.uuid4()),
             description=training_data['description'],
             created_at=datetime.now(),
             config={
@@ -29,3 +30,13 @@ class TrainingElement:
             },
             matches_runned=0,
         )
+
+    @staticmethod
+    def to_dict(training_element: 'TrainingElement') -> str:
+        return json.dumps({
+            'priority': training_element.priority,
+            'name': training_element.name,
+            'description': training_element.description,
+            'config': training_element.config,
+            'matches_runned': training_element.matches_runned,
+        })

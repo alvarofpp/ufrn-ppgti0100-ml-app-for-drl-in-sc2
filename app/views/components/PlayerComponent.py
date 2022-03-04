@@ -1,5 +1,6 @@
 from app.enums import Difficulties, Races
 from app.views.components import Component
+from game.agents import AGENTS
 
 
 class PlayerComponent(Component):
@@ -28,6 +29,11 @@ class PlayerComponent(Component):
         return self._render_bot()
 
     def _render_player(self):
+        self.data['agent'] = self.render_component.selectbox(
+            'Agente',
+            AGENTS,
+            key='select_agent_p{}'.format(self.player_number),
+        )
         pass
 
     def _render_bot(self):

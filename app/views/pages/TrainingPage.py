@@ -1,3 +1,5 @@
+import json
+
 from app import SessionState
 from app.constants import LADDER_MAPS, PRIORITIES
 from app.core.queue import TrainingElement, TrainingQueue
@@ -21,6 +23,18 @@ class TrainingPage(PageView):
         st.markdown("""
         Aqui é onde você parametriza seus treinamentos e acompanha o seu desenvolvimento.
         """, unsafe_allow_html=True)
+
+        config_file = st.file_uploader('Importar configurações')
+        if config_file is not None:
+            data = json.loads(config_file.getvalue())
+            self.data = {
+                'priority': data['priority'],
+                'name': data['name'],
+                'description': data['description'],
+                'map': data['config']['map'],
+                'number_players': len(data['config']['players']),
+                'players': data['config']['players'],
+            }
 
     def section_01(self):
         st.markdown("""
