@@ -1,4 +1,4 @@
-# Machine Learning App to Deep Reinforcement Learning in Starcraft 2
+# Machine Learning App for Deep Reinforcement Learning in Starcraft 2
 
 Work of Advanced Topics in Information Technology I (PPGTI0100) course of Master's degree in
 Information Technology from the Federal University of Rio Grande do Norte (UFRN), with
