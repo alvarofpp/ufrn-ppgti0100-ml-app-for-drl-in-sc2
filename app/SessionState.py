@@ -7,6 +7,7 @@ class SessionState:
     DEFAULT_VALUES = {
         'queue': [],
         'message_feedback': None,
+        'training_create_data': None,
     }
 
     @staticmethod

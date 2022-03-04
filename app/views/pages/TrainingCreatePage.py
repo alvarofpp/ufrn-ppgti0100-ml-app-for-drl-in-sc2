@@ -13,6 +13,10 @@ class TrainingCreatePage(PageView):
     def __init__(self):
         super().__init__()
         self.title = 'Registrar treinamento'
+        self.data = SessionState.get('training_create_data')
+        self.maps = maps.get_maps()
+
+    def _reset_data(self):
         self.data = {
             'priority': 1,
             'name': '',
@@ -22,7 +26,8 @@ class TrainingCreatePage(PageView):
             'players': [],
             'max_matches': 1,
         }
-        self.maps = maps.get_maps()
+
+        SessionState.set('training_create_data', self.data)
 
     def intro(self):
         st.markdown("""
@@ -41,6 +46,13 @@ class TrainingCreatePage(PageView):
                 'players': data['config']['players'],
                 'max_matches': data['config']['max_matches'],
             }
+            SessionState.set('training_create_data', self.data)
+
+        if self.data is None:
+            self._reset_data()
+
+        if st.button('Limpar formulário'):
+            self._reset_data()
 
     def section_01(self):
         st.markdown("""
@@ -73,7 +85,7 @@ class TrainingCreatePage(PageView):
         st.markdown("""
         ## Mapa
         """, unsafe_allow_html=True)
-        map_index = 1
+        map_index = 0
         if self.data['map'] is not None:
             map_index = list(self.maps.keys()).index(self.data['map'])
 
@@ -102,15 +114,19 @@ class TrainingCreatePage(PageView):
         column_one, column_two = st.columns(2)
 
         for player_number in range(0, self.data['number_players']):
+            player_data = None
+            if player_number < len(self.data['players']):
+                player_data = self.data['players'][player_number]
+
             column = column_one if (player_number - 1) % 2 != 0 else column_two
             player_component = PlayerComponent(
                 player_number=player_number,
                 render_component=column,
-                player_data=self.data['players'][player_number]
-                if player_number < len(self.data['players']) else None,
+                player_data=player_data,
             )
             player_component.render()
-            self.data['players'].append(player_component.data)
+            if player_data is None:
+                self.data['players'].append(player_component.data)
 
         if st.button('Adicionar treinamento a base'):
             if not self._check_least_one_agent():

@@ -33,7 +33,7 @@ class PlayerComponent(Component):
             value=self.data['is_agent'],
         )
 
-        race_index = 1
+        race_index = 0
         if self.data['race'] is not None:
             race_index = Races.list().index(self.data['race'])
 
@@ -50,7 +50,7 @@ class PlayerComponent(Component):
         return self._render_bot()
 
     def _render_player(self):
-        agent_index = 1
+        agent_index = 0
         if self.data['agent'] is not None:
             agent_index = AGENTS.index(self.data['agent'])
 
@@ -63,7 +63,7 @@ class PlayerComponent(Component):
         pass
 
     def _render_bot(self):
-        difficulty_index = 1
+        difficulty_index = 0
         if self.data['difficulty'] is not None:
             difficulty_index = Difficulties.list().index(self.data['difficulty'])
 
