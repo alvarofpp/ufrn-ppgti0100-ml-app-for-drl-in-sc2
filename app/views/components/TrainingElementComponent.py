@@ -16,7 +16,6 @@ class TrainingElementComponent(Component):
                 key='btn_exec_{}'.format(training_element.id),
         ):
             Game(training_element).start()
-            TrainingQueue.remove_training_from_queue(training_element.id)
             SessionState.set('message_feedback', {
                 'type': 'info',
                 'message': 'Treinamento iniciado.',

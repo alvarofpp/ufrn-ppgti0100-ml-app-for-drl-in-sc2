@@ -10,5 +10,6 @@ class TrainingQueueComponent(Component):
             self.render_component.text('Nenhum treinamento na base.')
             return
 
+        queue.sort(key=lambda element: element.priority, reverse=True)
         for queue_element in queue:
             self.render_component.code(queue_element)

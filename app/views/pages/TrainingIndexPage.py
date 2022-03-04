@@ -1,6 +1,7 @@
 from app import SessionState
 from app.views.components import TrainingElementComponent
 from app.views.pages import PageView
+from game import Game
 import streamlit as st
 
 
@@ -9,6 +10,7 @@ class TrainingIndexPage(PageView):
     def __init__(self):
         super().__init__()
         self.title = 'Treinamentos'
+        self.all_trainings = False
 
     def intro(self):
         st.markdown("""
@@ -31,5 +33,18 @@ class TrainingIndexPage(PageView):
             's' if len_queue > 1 else '',
         ))
 
+        queue.sort(key=lambda element: element.priority, reverse=True)
+
+        self.all_trainings = False
+        if st.button(
+                '▶ Executar todos os treinamentos',
+                help='Executar treinamento',
+        ):
+            self.all_trainings = True
+
         for element in queue:
             TrainingElementComponent.TrainingElementComponent().render(element)
+
+        if self.all_trainings:
+            for element in queue:
+                Game(element).start()

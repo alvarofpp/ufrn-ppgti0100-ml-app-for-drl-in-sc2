@@ -14,9 +14,13 @@ class TrainingCreatePage(PageView):
         super().__init__()
         self.title = 'Registrar treinamento'
         self.data = {
+            'priority': 1,
+            'name': '',
+            'description': '',
             'map': None,
             'number_players': 2,
             'players': [],
+            'max_matches': 1,
         }
         self.maps = maps.get_maps()
 
@@ -35,6 +39,7 @@ class TrainingCreatePage(PageView):
                 'map': data['config']['map'],
                 'number_players': len(data['config']['players']),
                 'players': data['config']['players'],
+                'max_matches': data['config']['max_matches'],
             }
 
     def section_01(self):
@@ -49,23 +54,34 @@ class TrainingCreatePage(PageView):
         self.data['name'] = st.text_input(
             'Nome',
             max_chars=250,
+            value=self.data['name'],
         )
         self.data['description'] = st.text_area(
             'Descrição',
             height=100,
             max_chars=5000,
+            value=self.data['description'],
         )
         self.data['max_matches'] = st.slider(
             'Quantidade de máxima de partidas',
             min_value=1,
             max_value=10000,
             step=50,
+            value=self.data['max_matches'],
         )
 
         st.markdown("""
         ## Mapa
         """, unsafe_allow_html=True)
-        self.data['map'] = st.selectbox('Mapa', self.maps.keys())
+        map_index = 1
+        if self.data['map'] is not None:
+            map_index = list(self.maps.keys()).index(self.data['map'])
+
+        self.data['map'] = st.selectbox(
+            'Mapa',
+            self.maps.keys(),
+            index=map_index,
+        )
 
         st.markdown("""
         ## Players
@@ -78,6 +94,7 @@ class TrainingCreatePage(PageView):
                 'Quantidade de players',
                 min_value=1,
                 max_value=max_players,
+                value=self.data['number_players'],
             )
         else:
             self.data['number_players'] = 1
@@ -86,7 +103,12 @@ class TrainingCreatePage(PageView):
 
         for player_number in range(0, self.data['number_players']):
             column = column_one if (player_number - 1) % 2 != 0 else column_two
-            player_component = PlayerComponent(player_number=player_number, render_component=column)
+            player_component = PlayerComponent(
+                player_number=player_number,
+                render_component=column,
+                player_data=self.data['players'][player_number]
+                if player_number < len(self.data['players']) else None,
+            )
             player_component.render()
             self.data['players'].append(player_component.data)
 
