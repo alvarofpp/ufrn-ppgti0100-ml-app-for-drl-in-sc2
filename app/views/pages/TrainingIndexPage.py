@@ -4,11 +4,11 @@ from app.views.pages import PageView
 import streamlit as st
 
 
-class QueuePage(PageView):
+class TrainingIndexPage(PageView):
 
     def __init__(self):
         super().__init__()
-        self.title = 'Fila de treinamentos'
+        self.title = 'Treinamentos'
 
     def intro(self):
         st.markdown("""
@@ -17,7 +17,7 @@ class QueuePage(PageView):
 
     def section_01(self):
         st.markdown("""
-        ## Fila
+        ## Base de treinamentos
         """, unsafe_allow_html=True)
         queue = SessionState.get('queue')
         len_queue = len(queue)

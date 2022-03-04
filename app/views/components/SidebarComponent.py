@@ -11,14 +11,12 @@ class SidebarComponent(Component):
 
     # @st.cache(allow_output_mutation=True)
     def get_page(self):
-        bot_factory_page = pages.BotFactoryPage()
-        queue_page = pages.QueuePage()
-        training_page = pages.TrainingPage()
+        training_index_page = pages.TrainingIndexPage()
+        training_create_page = pages.TrainingCreatePage()
 
         return {
-            bot_factory_page.title: bot_factory_page,
-            queue_page.title: queue_page,
-            training_page.title: training_page,
+            training_index_page.title: training_index_page,
+            training_create_page.title: training_create_page,
         }
 
     def render(self):
@@ -29,7 +27,7 @@ class SidebarComponent(Component):
         )
         self.render_component.markdown("""
         ---
-        Fila de treinamentos:
+        Base de treinamentos:
         """)
         component = TrainingQueueComponent.TrainingQueueComponent(
             render_component=self.render_component,

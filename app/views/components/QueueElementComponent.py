@@ -1,4 +1,5 @@
 from app import SessionState
+from app.constants import PRIORITIES
 from app.core.queue import TrainingElement, TrainingQueue
 from app.views.components import Component
 from game import Game
@@ -14,7 +15,6 @@ class QueueElementComponent(Component):
                 help='Executar treinamento',
                 key='btn_exec_{}'.format(training_element.id),
         ):
-            # TODO
             Game(training_element).start()
             TrainingQueue.remove_training_from_queue(training_element.id)
             SessionState.set('message_feedback', {
@@ -41,7 +41,7 @@ class QueueElementComponent(Component):
         - **Data e hora de criação**: {}
         """.format(
             training_element.id,
-            training_element.priority,
+            PRIORITIES[training_element.priority],
             training_element.created_at.strftime('%d/%m/%Y %H:%M:%S'),
         ))
 

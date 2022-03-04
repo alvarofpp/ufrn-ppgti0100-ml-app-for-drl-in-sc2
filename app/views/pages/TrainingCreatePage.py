@@ -8,11 +8,11 @@ from app.views.pages import PageView
 import streamlit as st
 
 
-class TrainingPage(PageView):
+class TrainingCreatePage(PageView):
 
     def __init__(self):
         super().__init__()
-        self.title = 'Treinamentos'
+        self.title = 'Registrar treinamento'
         self.data = {
             'map': None,
             'number_players': 2,
