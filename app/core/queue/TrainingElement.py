@@ -1,8 +1,8 @@
 from dataclasses import dataclass, field
 from datetime import datetime
+import json
 from typing import Dict
 import uuid
-import json
 
 
 @dataclass(order=True)

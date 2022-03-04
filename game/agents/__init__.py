@@ -1,7 +1,18 @@
+from .NoOpAgent import NoOpAgent
 from .PlayerToAgent import PlayerToAgent
-from .RawAgent import RawAgent
+from .RandomAgent import RandomAgent
+from .SmartAgent import SmartAgent
+
+AGENTS = [
+    'NoOpAgent',
+    'RandomAgent',
+    'SmartAgent',
+]
 
 __all__ = [
+    'AGENTS',
+    'NoOpAgent',
     'PlayerToAgent',
-    'RawAgent',
+    'RandomAgent',
+    'SmartAgent',
 ]

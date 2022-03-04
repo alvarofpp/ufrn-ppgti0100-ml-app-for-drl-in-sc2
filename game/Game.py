@@ -1,8 +1,8 @@
 import sys
-from absl.flags import FLAGS
 
+from absl.flags import FLAGS
 from app.core.queue import TrainingElement
-from game.agents import PlayerToAgent, RawAgent
+from game.agents import NoOpAgent, PlayerToAgent
 from game.bots import PlayerToBot
 from game.envs import EnvBasic
 
@@ -21,7 +21,7 @@ class Game:
         })
 
     def start(self):
-        agent = RawAgent()
+        agent = NoOpAgent()
         try:
             matches = 0
             while matches < self.max_matches:
