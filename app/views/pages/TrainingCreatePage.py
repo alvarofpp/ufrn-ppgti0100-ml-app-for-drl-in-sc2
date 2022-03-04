@@ -1,15 +1,15 @@
 import json
 
 from app import SessionState
-from app.constants import LADDER_MAPS, PRIORITIES
+from app.constants import PRIORITIES
 from app.core.queue import TrainingElement, TrainingQueue
 from app.views.components import PlayerComponent, SelectComponent
 from app.views.pages import PageView
+from pysc2.env.sc2_env import maps
 import streamlit as st
 
 
 class TrainingCreatePage(PageView):
-
     def __init__(self):
         super().__init__()
         self.title = 'Registrar treinamento'
@@ -18,6 +18,7 @@ class TrainingCreatePage(PageView):
             'number_players': 2,
             'players': [],
         }
+        self.maps = maps.get_maps()
 
     def intro(self):
         st.markdown("""
@@ -64,12 +65,16 @@ class TrainingCreatePage(PageView):
         st.markdown("""
         ## Mapa
         """, unsafe_allow_html=True)
-        self.data['map'] = st.selectbox('Mapa', LADDER_MAPS)
+        self.data['map'] = st.selectbox('Mapa', self.maps.keys())
 
         st.markdown("""
         ## Players
         """, unsafe_allow_html=True)
-        self.data['number_players'] = st.slider('Quantidade de players', min_value=2, max_value=8)
+        self.data['number_players'] = st.slider(
+            'Quantidade de players',
+            min_value=1,
+            max_value=self.maps[self.data['map']].players,
+        )
         column_one, column_two = st.columns(2)
 
         for player_number in range(0, self.data['number_players']):
@@ -78,7 +83,11 @@ class TrainingCreatePage(PageView):
             player_component.render()
             self.data['players'].append(player_component.data)
 
-        if st.button('Adicionar treinamento a fila'):
+        if st.button('Adicionar treinamento a base'):
+            if not self._check_least_one_agent():
+                st.warning('Ao menos 1 player deve ser um agente.')
+                return
+
             training_data = TrainingElement.create_training_element(self.data)
             TrainingQueue.add_training_to_queue(training_data)
             SessionState.set('message_feedback', {
@@ -87,3 +96,10 @@ class TrainingCreatePage(PageView):
             })
 
         st.json(self.data)
+
+    def _check_least_one_agent(self) -> bool:
+        for player in self.data['players']:
+            if player['is_agent']:
+                return True
+
+        return False

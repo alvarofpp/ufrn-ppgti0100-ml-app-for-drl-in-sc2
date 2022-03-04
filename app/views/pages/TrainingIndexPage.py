@@ -1,5 +1,5 @@
 from app import SessionState
-from app.views.components import QueueElementComponent
+from app.views.components import TrainingElementComponent
 from app.views.pages import PageView
 import streamlit as st
 
@@ -23,13 +23,13 @@ class TrainingIndexPage(PageView):
         len_queue = len(queue)
 
         if len_queue == 0:
-            st.warning('Não há treinamentos na fila.')
+            st.warning('Não há treinamentos na base.')
             return
 
-        st.text('Há um total de {} treinamento{} na fila.'.format(
+        st.text('Há um total de {} treinamento{} na base.'.format(
             len_queue,
             's' if len_queue > 1 else '',
         ))
 
         for element in queue:
-            QueueElementComponent().render(element)
+            TrainingElementComponent().render(element)

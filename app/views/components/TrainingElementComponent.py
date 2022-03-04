@@ -5,7 +5,7 @@ from app.views.components import Component
 from game import Game
 
 
-class QueueElementComponent(Component):
+class TrainingElementComponent(Component):
     def render(self, training_element: TrainingElement):
         self.render_component.markdown('### {}'.format(training_element.name))
         column_one, column_two = self.render_component.columns([1, 1])

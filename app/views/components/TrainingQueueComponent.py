@@ -1,5 +1,5 @@
 from app import SessionState
-from app.views.components import Component  # , QueueElementComponent
+from app.views.components import Component
 
 
 class TrainingQueueComponent(Component):
@@ -7,9 +7,8 @@ class TrainingQueueComponent(Component):
         queue = SessionState.get('queue')
 
         if len(queue) == 0:
-            self.render_component.text('Nenhum treinamento em andamento.')
+            self.render_component.text('Nenhum treinamento na base.')
             return
 
         for queue_element in queue:
             self.render_component.code(queue_element)
-            # QueueElementComponent(render_component=self.render_component).render(queue_element)
